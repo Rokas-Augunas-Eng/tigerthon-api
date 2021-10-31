@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const urlRoute = require("./routes/url");
+const searchTermRoute = require("./routes/searchTerm");
 
 const cors = require("cors");
 dotenv.config();
@@ -12,6 +13,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 app.use("/api/url", urlRoute);
+app.use("/api/queries", searchTermRoute);
 
 mongoose
   .connect(process.env.MONGO_URL, {
