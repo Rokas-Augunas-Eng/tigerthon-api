@@ -1,13 +1,13 @@
-const Url = require("../models/Url");
+const Lead = require("../models/Lead");
 const router = require("express").Router();
 
 // CREATE
 router.post("/", async (req, res) => {
-  const newUrl = new Url(req.body);
+  const newLead = new Lead(req.body);
 
   try {
-    const savedUrl = await newUrl.save();
-    res.status(201).json(savedUrl);
+    const savedLead = await newLead.save();
+    res.status(201).json(savedLead);
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -16,14 +16,14 @@ router.post("/", async (req, res) => {
 // UPDATE
 router.put("/:id", async (req, res) => {
   try {
-    const updatedUrl = await Url.findByIdAndUpdate(
+    const updatedLead = await Lead.findByIdAndUpdate(
       req.params.id,
       {
         $set: req.body,
       },
       { new: true }
     );
-    res.status(200).json(updatedUrl);
+    res.status(200).json(updatedLead);
   } catch (err) {
     res.status(500).json(err.message);
   }
@@ -32,28 +32,28 @@ router.put("/:id", async (req, res) => {
 // DELETE
 router.delete("/find/:id", async (req, res) => {
   try {
-    await Url.findByIdAndUDelete(req.params.id);
-    res.status(200).json("Url has been deleted.");
+    await Lead.findByIdAndUDelete(req.params.id);
+    res.status(200).json("Lead has been deleted.");
   } catch (err) {
     res.status(500).json(err.message);
   }
 });
 
-// // GET ONE URL
+// // GET ONE LEAD
 router.get("/find/:id", async (req, res) => {
   try {
-    const url = await Url.findById(req.params.id);
-    res.status(200).json(url);
+    const lead = await Lead.findById(req.params.id);
+    res.status(200).json(lead);
   } catch (err) {
     res.status(500).json(err);
   }
 });
 
-// // GET ALL URLS
+// // GET ALL LEADS
 router.get("/", async (req, res) => {
   try {
-    const urls = await Url.find();
-    res.status(200).json(urls);
+    const leads = await Lead.find();
+    res.status(200).json(leads);
   } catch (err) {
     res.status(500).json(err.message);
   }
