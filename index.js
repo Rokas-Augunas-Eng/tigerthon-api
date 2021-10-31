@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const urlRoute = require("./routes/url");
+const leadRoute = require("./routes/lead");
 const searchTermRoute = require("./routes/searchTerm");
 
 const cors = require("cors");
@@ -12,7 +12,7 @@ const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/url", urlRoute);
+app.use("/api/lead", leadRoute);
 app.use("/api/queries", searchTermRoute);
 
 mongoose

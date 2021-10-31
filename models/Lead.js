@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const UrlSchema = new mongoose.Schema(
+const LeadSchema = new mongoose.Schema(
   {
-    url: { type: String, required: true },
+    links: { type: Array, required: true },
     isReviewed: { type: Boolean, default: false },
     animal: { type: String },
     bodyParts: { type: Array },
@@ -16,4 +16,4 @@ const UrlSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Url", UrlSchema);
+module.exports = mongoose.model("Lead", LeadSchema);
